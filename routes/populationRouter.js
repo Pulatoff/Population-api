@@ -1,6 +1,14 @@
 const express = require("express");
-const populationRoute = express.Router();
+const PopulationRoute = express.Router();
+const popController = require("../controller/populationController");
 
-populationRoute.route("/").get().post();
+PopulationRoute.route("/")
+  .get(popController.getAllPop)
+  .post(popController.addPop);
 
-populationRoute.route("/:id").get().patch().delete();
+PopulationRoute.route("/:id")
+  .get(popController.getPop)
+  .patch(popController.updatePop)
+  .delete(popController.deletePop);
+
+module.exports = PopulationRoute;
